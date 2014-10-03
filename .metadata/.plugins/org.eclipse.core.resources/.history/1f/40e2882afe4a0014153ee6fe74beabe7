@@ -1,0 +1,16 @@
+package Ville;
+
+public class Voiture {
+	
+	public Voiture ()
+	{
+		
+	}
+	
+	public void avancer(Route r)
+	{
+		r.getChaussee(this) + 1;
+	}
+
+	
+}

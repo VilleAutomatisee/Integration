@@ -1,0 +1,10 @@
+package Ville;
+
+public class Route {
+	private int nbChaussee;
+	
+	
+	public Route()
+	
+
+}

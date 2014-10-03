@@ -1,0 +1,18 @@
+package Ville;
+
+public class Route {
+
+	private int nbPositionRoute;
+	
+	public Route(int nbPositionRoute)
+	{
+		this.nbPositionRoute = nbPositionRoute ;
+		
+	}
+	
+	public void faireAvancerVoiture(Voiture v)
+	{
+		v.avancer(this);
+	}
+	
+}

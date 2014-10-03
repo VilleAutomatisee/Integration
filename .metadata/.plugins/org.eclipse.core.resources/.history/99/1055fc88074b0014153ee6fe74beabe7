@@ -1,0 +1,52 @@
+package Ville;
+
+public class PositionBloc {
+	
+	private int position;
+	private PositionBloc suivant;
+	
+	
+	public PositionBloc(int position, PositionBloc suivant) {
+		this.position = position;
+		this.setSuivant(suivant);
+	}
+	
+	/**
+	 * @Function 	: Constructeur du dernier bloc de la liste
+	 */
+	public PositionBloc(int v) 
+	{
+		this.position = v;
+		this.setSuivant(null);
+	}
+	
+	
+	/**
+	 * @Function 	: Getter / Setter
+	 */
+
+	public int getPosition() 
+	{
+		return position;
+	}
+	
+	public void setPosition(int position) 
+	{
+		this.position = position;
+	}
+	
+	public void ajouterAuDebut(int position) 
+	{
+		
+	}
+
+	public PositionBloc getSuivant() 
+	{
+		return suivant;
+	}
+
+	public void setSuivant(PositionBloc suivant) 
+	{
+		this.suivant = suivant;
+	}
+}

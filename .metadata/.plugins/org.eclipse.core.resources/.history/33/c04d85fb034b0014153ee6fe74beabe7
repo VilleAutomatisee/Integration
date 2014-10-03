@@ -1,0 +1,28 @@
+package Ville;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Chaussee {
+	
+	private int nbPositionRoute;
+	private List <PositionBloc> listePositionBloc;
+
+	public Chaussee(int nbPositionRoute) {
+	
+		listePositionBloc = new ArrayList(nbPositionRoute);
+		this.initListePosition(listePositionBloc);
+		
+	}
+
+	private void initListePosition(List<PositionBloc> listePositionBloc2) {
+		
+		for
+		
+	}
+	
+	
+	
+	
+
+}

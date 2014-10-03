@@ -1,0 +1,13 @@
+package Ville;
+
+public class Ville {
+	
+	private int nbRoute;
+	
+	
+	public void ajouterRoute(Route r)
+	{
+		
+	}
+
+}

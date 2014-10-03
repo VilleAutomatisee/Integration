@@ -1,0 +1,19 @@
+package Ville;
+
+public class Route {
+
+	private int nbPositionRoute;
+	
+	public Route(int nbPositionRoute)
+	{
+		
+		//nombre de position possible dans une route
+		this.nbPositionRoute = nbPositionRoute ;
+		//création des 2 chaussees composants la route
+		Chaussee sens1 = new Chaussee(nbPositionRoute);
+		Chaussee sens2 = new Chaussee(nbPositionRoute);
+	}
+	
+	
+	
+}

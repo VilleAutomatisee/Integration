@@ -1,55 +1,19 @@
 package Ville;
 
-public class Route {
+public class Route  {
 
 	private int 		nbPositionRoute;
 	private Chaussee 	sens1;
 	private Chaussee 	sens2;
 	
 	
-	public Route(int nbPositionRoute)
+	/*public Route(int nbPositionRoute)
 	{
 		
 		this.setNbPositionRoute(nbPositionRoute) ;
 		
 		this.setSens1(new Chaussee(nbPositionRoute));
 		this.setSens2(new Chaussee(nbPositionRoute));
-	}
+	}*/
 
-	
-	/**
-	 * @Function 	: Getter / Setter
-	 */
-
-	public int getNbPositionRoute() {
-		return nbPositionRoute;
-	}
-
-
-	public void setNbPositionRoute(int nbPositionRoute) {
-		this.nbPositionRoute = nbPositionRoute;
-	}
-
-
-	public Chaussee getSens2() {
-		return sens2;
-	}
-
-
-	public void setSens2(Chaussee sens2) {
-		this.sens2 = sens2;
-	}
-
-
-	public Chaussee getSens1() {
-		return sens1;
-	}
-
-
-	public void setSens1(Chaussee sens1) {
-		this.sens1 = sens1;
-	}
-	
-	
-	
 }

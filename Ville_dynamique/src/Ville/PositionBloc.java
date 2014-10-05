@@ -1,47 +1,26 @@
 package Ville;
 
 public class PositionBloc {
-	
-	private int position;
+	private int id;
+	private int positionX;
+    private int positionY;
+
 	private PositionBloc suivant;
 	
 	
-	public PositionBloc(int position, PositionBloc suivant) {
-		this.position = position;
-		this.setSuivant(suivant);
-	}
-	
-	/**
-	 * @Function 	: Constructeur du dernier bloc de la liste
-	 */
-	public PositionBloc(int v) 
-	{
-		this.position = v;
-		this.setSuivant(null);
-	}
-	
-	
-	/**
-	 * @Function 	: Getter / Setter
-	 */
-
-	public int getPosition() 
-	{
-		return position;
-	}
-	
-	public void setPosition(int position) 
-	{
-		this.position = position;
-	}
-	
-	public PositionBloc getSuivant() 
-	{
-		return suivant;
+	public PositionBloc( int positionX, int positionY, int id )
+    {
+		this.positionX  = positionX;
+        this.positionY  = positionY;
+        this.id         = id;
+		this.setSuivant( null );
 	}
 
-	public void setSuivant(PositionBloc suivant) 
-	{
-		this.suivant = suivant;
-	}
+    /**
+     * Getters - setters
+     */
+    public void setSuivant( PositionBloc p )
+    {
+        this.suivant = p;
+    }
 }

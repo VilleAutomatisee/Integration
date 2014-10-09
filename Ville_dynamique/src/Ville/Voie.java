@@ -51,21 +51,21 @@ public class Voie {
 
     public void ajouterNouvelleVoiture(Voiture v) {
 
-        PositionBloc debutDeVoie = getDebutVoie();
+        PositionBloc debutDeVoie = getEntreeVoie();
         debutDeVoie.setVoiturePresente(v);
     }
 
-    public PositionBloc getDebutVoie()
+    public PositionBloc getEntreeVoie()
     {
         return this.listPositionsBlocs.get(0);
     }
 
     public void connection(Voie voie2)
     {
-        this.finVoie.setSuivant(voie2.getDebutVoie());
+        this.finVoie.setSuivant(voie2.getEntreeVoie());
     }
 
-    public PositionBloc getFinVoie() {
+    public PositionBloc getSortieVoie() {
         return finVoie;
     }
 }

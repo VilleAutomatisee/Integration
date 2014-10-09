@@ -7,11 +7,19 @@ public class Route  {
 
     // Les interface de la route sont ses entrees et sorties
 
-    private Interface   entree;
-    private Interface   sortie;
+    private Interface   entreeSortie;
+    private Interface   sortieEntree;
 
 
-	public Route(int nbPositionRoute)
+    public Interface getEntreeSortie() {
+        return entreeSortie;
+    }
+
+    public Interface getSortieEntree() {
+        return sortieEntree;
+    }
+
+    public Route(int nbPositionRoute)
 	{
 		
 	    Voie voie1 = new Voie(nbPositionRoute);
@@ -21,6 +29,12 @@ public class Route  {
         this.sens2 = voie2;
 
 
+        // --------------->
+        entreeSortie = new Interface(sens1.getEntreeVoie(), sens2.getSortieVoie());
+
+        // <---------------
+        sortieEntree = new Interface(sens2.getEntreeVoie(), sens1.getSortieVoie());
+        if(entreeSortie ==null ) System.out.printf("c'est null");
 
 	}
 

@@ -5,4 +5,29 @@ package Ville;
  */
 public class Interface {
 
+    private PositionBloc entree ;
+    private PositionBloc sortie ;
+
+    public Interface(PositionBloc entree, PositionBloc sortie) {
+        this.entree = entree;
+        this.sortie = sortie;
+    }
+
+    public PositionBloc getEntree() {
+        return this.entree;
+    }
+
+    public PositionBloc getSortie() {
+        return this.sortie;
+    }
+
+    public void connectRoute(Interface interfaceEntreeSortie)
+    {
+
+        PositionBloc sortieRoute = interfaceEntreeSortie.getSortie();
+
+        sortieRoute.setSuivant(this.getEntree());
+
+        this.getSortie().setSuivant(interfaceEntreeSortie.getEntree());
+    }
 }

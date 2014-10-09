@@ -11,6 +11,14 @@ public class PositionBloc {
 
 
     private PositionBloc                            suivant;
+
+
+
+    //------------------------------------------------------------------------------ réservé aux carrefours
+    // --- TO DO : Voir si n'y a pas moyen de faire de l'héritage --> FLEME
+    private PositionBloc                            sortie;
+    //------------------------------------------------------------------------------ fin
+
     private boolean                                 debut;
     private Voiture                                 voiturePresente;
 
@@ -29,6 +37,12 @@ public class PositionBloc {
     {
         this.debut              = debut ;
         this.voiturePresente    = null ;
+    }
+
+    // Constructeur pour les positions d'un carrefour
+    public PositionBloc() {
+        this.voiturePresente = null ;
+        this.sortie = null;
     }
 
 
@@ -52,4 +66,11 @@ public class PositionBloc {
     public Voiture getVoiturePresente() {
         return voiturePresente;
     }
+
+
+    public void setSortie(PositionBloc sortie) {
+        this.sortie = sortie;
+    }
+
+
 }

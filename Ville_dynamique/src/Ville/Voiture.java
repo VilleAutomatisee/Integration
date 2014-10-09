@@ -1,26 +1,31 @@
 package Ville;
 
-public class Voiture {
-	
-	public Voiture ()
+public class Voiture
+{
+
+
+    private PositionBloc positionActuelle;
+
+
+    public Voiture (PositionBloc p)
 	{
-		
+	    this.positionActuelle = p;
 	}
-	
-	public void avancer()
+
+
+	public void avancerVoiture ()
 	{
-	}
-	
-	public void arreter()
-	{
-	}
-	
-	public void tournerDroite()
-	{
-	}
-	
-	public void tournerGauche()
-	{
+        if(this.positionActuelle.getSuivant().getVoiturePresente() == null)
+        {
+            System.out.println("J'avance");
+            this.positionActuelle.getSuivant().setVoiturePresente(this);
+            this.positionActuelle.setVoiturePresente(null);
+        }
+        else
+        {
+            System.out.println("La position suivante est occupe");
+        }
+
 	}
 
 	

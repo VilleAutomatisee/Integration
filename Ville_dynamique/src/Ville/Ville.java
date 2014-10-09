@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ville {
-	
-	private int 	nbRoute;
-	private boolean tournant;
+
+    /*private int 	nbRoute;
+    private boolean tournant;
 
     private int x;
     private int y;
@@ -19,8 +19,10 @@ public class Ville {
     /**
      * Construit une ville  : un rectangle/carré de X par Y
      */
-    public Ville( int x, int y )
-    {
+   /* public Ville( int x, int y )
+     {
+
+
         this.x              = x;
         this.y              = y;
         this.positionsBlocs = new ArrayList<PositionBloc>( x * y );
@@ -90,10 +92,10 @@ public class Ville {
      * Point d'entrée de l'application.
      *
      * @param args
-     */
+
     public static void main(String[] args) {
         Ville springfield = new Ville(50, 100);
 
-    }
+    }   */
 
 }

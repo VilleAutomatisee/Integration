@@ -2,18 +2,26 @@ package Ville;
 
 public class Route  {
 
-	private int 		nbPositionRoute;
-	private Chaussee 	sens1;
-	private Chaussee 	sens2;
-	
-	
-	/*public Route(int nbPositionRoute)
+	private Voie 	    sens1;
+	private Voie 	    sens2;
+
+    // Les interface de la route sont ses entrees et sorties
+
+    private Interface   entree;
+    private Interface   sortie;
+
+
+	public Route(int nbPositionRoute)
 	{
 		
-		this.setNbPositionRoute(nbPositionRoute) ;
-		
-		this.setSens1(new Chaussee(nbPositionRoute));
-		this.setSens2(new Chaussee(nbPositionRoute));
-	}*/
+	    Voie voie1 = new Voie(nbPositionRoute);
+        Voie voie2 = new Voie(nbPositionRoute);
+
+		this.sens1 = voie1;
+        this.sens2 = voie2;
+
+
+
+	}
 
 }

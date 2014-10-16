@@ -68,4 +68,19 @@ public class Voie {
     public PositionBloc getSortieVoie() {
         return finVoie;
     }
+
+    public void afficheVoie()
+    {
+       for (int i = 0 ; i < listPositionsBlocs.size() ; i++)
+       {
+           if(listPositionsBlocs.get(i).getVoiturePresente() == null)
+           {
+               System.out.print(" - ");
+           }
+           else
+           {
+               listPositionsBlocs.get(i).getVoiturePresente().afficherVoiture();
+           }
+       }
+    }
 }

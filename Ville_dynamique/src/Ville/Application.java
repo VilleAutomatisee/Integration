@@ -27,9 +27,18 @@ public class Application {
 
         voie.connection(voie2);
 
-        Voiture voiture1 = new Voiture(voie.getSortieVoie());
+        Voiture voiture1 = new Voiture(voie.getEntreeVoie());
 
         voiture1.avancerVoiture();
-
+        voie.afficheVoie();
+        System.out.println();
+        voiture1.avancerVoiture();
+        voie.afficheVoie();
+        System.out.println();
+        voiture1.avancerVoiture();
+        voie.afficheVoie();
+        System.out.println();
+        voiture1.avancerVoiture();
+        voie.afficheVoie();
     }
 }

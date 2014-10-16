@@ -12,7 +12,10 @@ public class Carrefour {
     private Interface faceEst;
     private Interface faceOuest;
 
-    public Carrefour() {this.genInterfacesCarrefour();}
+    public Carrefour()
+    {
+        this.genInterfacesCarrefour();
+    }
 
     private void genInterfacesCarrefour()
     {
@@ -27,10 +30,10 @@ public class Carrefour {
         positionSudEst.setSuivant(positionSudOuest);
         positionSudOuest.setSuivant(positionNordOuest);
 
-        this.faceEst        = new Interface(positionNordEst, positionSudEst);
-        this.faceNord       = new Interface(positionNordOuest, positionNordEst);
-        this.faceOuest      = new Interface(positionNordOuest, positionSudOuest);
-        this.faceSud        = new Interface(positionSudOuest, positionSudEst);
+        this.faceEst        = new Interface(positionNordEst     , positionSudEst);
+        this.faceNord       = new Interface(positionNordOuest   , positionNordEst);
+        this.faceOuest      = new Interface(positionNordOuest   , positionSudOuest);
+        this.faceSud        = new Interface(positionSudOuest    , positionSudEst);
 
 
     }

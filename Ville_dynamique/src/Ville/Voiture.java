@@ -17,9 +17,11 @@ public class Voiture
 	{
         if(this.positionActuelle.getSuivant().getVoiturePresente() == null)
         {
-            System.out.println("J'avance");
-            this.positionActuelle.getSuivant().setVoiturePresente(this);
+
             this.positionActuelle.setVoiturePresente(null);
+            this.positionActuelle.getSuivant().setVoiturePresente(this);
+            this.positionActuelle = this.positionActuelle.getSuivant();
+
         }
         else
         {
@@ -27,6 +29,11 @@ public class Voiture
         }
 
 	}
+
+    public void afficherVoiture()
+    {
+        System.out.print(" o-o ");
+    }
 
 	
 }

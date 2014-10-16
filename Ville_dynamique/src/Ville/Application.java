@@ -7,6 +7,7 @@ public class Application {
 
     public static void main(String[] args) {
 
+
         Voie voie        = new Voie(16);
         Voie voie2       = new Voie(13);
         Voie voie3       = new Voie(5);
@@ -27,7 +28,28 @@ public class Application {
 
         voie.connection(voie2);
 
+        // TEST : 3 VOITURES SUR UNE MÊME VOIE
+
+        System.out.println("================ SPRINGFIELD : 3 VOITURES SUR UNE MÊME VOIE ================");
+
+        voie.afficheVoie();
+        System.out.println();
         Voiture voiture1 = new Voiture(voie.getEntreeVoie());
+        voie.afficheVoie();
+        System.out.println();
+        Voiture voiture2 = new Voiture(voie.getEntreeVoie());
+        voie.afficheVoie();
+        System.out.println();
+        Voiture voiture3 = new Voiture(voie.getEntreeVoie());
+        voie.afficheVoie();
+        System.out.println();
+        Voiture voiture4 = new Voiture(voie.getEntreeVoie());
+        voie.afficheVoie();
+        System.out.println();
+
+
+        System.out.println("================ SPRINGFIELD : FIN TEST ================");
+
 
         voiture1.avancerVoiture();
         voie.afficheVoie();

@@ -4,12 +4,29 @@ public class Voiture
 {
 
 
+    public PositionBloc getPositionActuelle() {
+        return positionActuelle;
+    }
+
     private PositionBloc positionActuelle;
 
 
     public Voiture (PositionBloc p)
 	{
-	    this.positionActuelle = p;
+
+        if(p.getVoiturePresente() == null)
+        {
+            this.positionActuelle = p;
+            this.positionActuelle.setVoiturePresente(this);
+        }
+        else
+        {
+            p.getVoiturePresente().avancerVoiture();
+            this.positionActuelle = p;
+            this.positionActuelle.setVoiturePresente(this);
+
+        }
+
 	}
 
 
@@ -25,7 +42,11 @@ public class Voiture
         }
         else
         {
-            System.out.println("La position suivante est occupe");
+            this.positionActuelle.getSuivant().getVoiturePresente().avancerVoiture();
+
+            this.positionActuelle.setVoiturePresente(null);
+            this.positionActuelle.getSuivant().setVoiturePresente(this);
+            this.positionActuelle = this.positionActuelle.getSuivant();
         }
 
 	}

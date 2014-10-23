@@ -10,6 +10,10 @@ public class Voiture
 
     private PositionBloc positionActuelle;
 
+    public Voiture()
+    {
+
+    }
 
     public Voiture (PositionBloc p)
 	{
@@ -54,6 +58,15 @@ public class Voiture
     public void afficherVoiture()
     {
         System.out.print(" o-o ");
+    }
+
+
+    public void circuler(Voie voie)
+    {
+        while(true)
+        {
+            this.avancerVoiture();
+        }
     }
 
 	

@@ -1,9 +1,216 @@
 package Ville;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class Ville {
+
+    private List<Route>     listRoute;
+    private List<Voie>      listVoie;
+    private List<Voiture>   listVoiture;
+
+    private int nbRoute;
+    private int nbVoie;
+
+    public Ville()
+    {
+
+        this.listRoute          = new ArrayList<Route>();
+        this.listVoie           = new ArrayList<Voie>();
+        this.listVoiture        = new ArrayList<Voiture>();
+
+        this.generateurVille();
+    }
+
+
+    private void generateurVille()
+    {
+
+
+        Voie voie        = new Voie(16);
+        Voie voie2       = new Voie(13);
+        Voie voie3       = new Voie(5);
+        Voie voie4       = new Voie(5);
+
+        this.listVoie.add(voie);
+        this.listVoie.add(voie2);
+        this.listVoie.add(voie3);
+        this.listVoie.add(voie4);
+
+        voie.connection(voie2);
+        voie4.connection(voie3);
+
+
+        // On cree un carrefour : 4 Routes et un Carrefour
+        Route r1         = new Route(3);
+        Route r2         = new Route(5);
+        Route r3         = new Route(4);
+        Route r4         = new Route(8);
+
+        this.listRoute.add(r1);
+        this.listRoute.add(r2);
+        this.listRoute.add(r3);
+        this.listRoute.add(r4);
+
+
+        // Dans notre projet on considère qu'un carrefour est constitué de 4 directions : nord - sud - est - ouest
+        Carrefour c      = new Carrefour();
+
+        c.getFaceOuest().connectRoute(r1.getEntreeSortie());
+        c.getFaceEst().connectRoute(r2.getEntreeSortie());
+        c.getFaceNorth().connectRoute(r3.getEntreeSortie());
+        c.getFaceSouth().connectRoute(r4.getEntreeSortie());
+
+
+        Voiture v1 = new Voiture();
+        Voiture v2 = new Voiture();
+
+        this.listVoiture.add(v1);
+        this.listVoiture.add(v2);
+
+
+    }
+
+
+
+
+
+
+    public Voie getVoieAleatoire()
+    {
+
+        Random rand = new Random();
+
+        int indiceRouteAleatoire  = rand.nextInt(this.listRoute.size());
+
+        return this.listRoute.get(indiceRouteAleatoire).getEntreeAleatoire();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*private int 	nbRoute;
     private boolean tournant;
@@ -12,11 +219,11 @@ public class Ville {
     private int y;
     /**
      * Cette hashmap est simplement une suite d'objects positions blocks, à la suite, sans tenir compte de la position en 3D.
-     */
+
     private ArrayList<PositionBloc> positionsBlocs;
 
 
-    /**
+
      * Construit une ville  : un rectangle/carré de X par Y
      */
    /* public Ville( int x, int y )

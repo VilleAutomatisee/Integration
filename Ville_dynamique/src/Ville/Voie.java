@@ -82,5 +82,6 @@ public class Voie {
                listPositionsBlocs.get(i).getVoiturePresente().afficherVoiture();
            }
        }
+        System.out.println();
     }
 }

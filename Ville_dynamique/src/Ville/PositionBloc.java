@@ -24,6 +24,20 @@ public class PositionBloc
         this.sortie             = null;
     }
 
+    public synchronized void Prend(Voiture v) {
+        while ( voiturePresente!=null ) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        voiturePresente = v;
+    }
+    public synchronized void Libere() {
+        voiturePresente=null;
+        notifyAll();
+    }
 
     /**
      * Getters - setters

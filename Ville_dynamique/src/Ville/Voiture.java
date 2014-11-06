@@ -36,22 +36,9 @@ public class Voiture
 
 	public void avancerVoiture ()
 	{
-        if(this.positionActuelle.getSuivant().getVoiturePresente() == null)
-        {
-
-            this.positionActuelle.setVoiturePresente(null);
-            this.positionActuelle.getSuivant().setVoiturePresente(this);
-            this.positionActuelle = this.positionActuelle.getSuivant();
-
-        }
-        else
-        {
-            this.positionActuelle.getSuivant().getVoiturePresente().avancerVoiture();
-
-            this.positionActuelle.setVoiturePresente(null);
-            this.positionActuelle.getSuivant().setVoiturePresente(this);
-            this.positionActuelle = this.positionActuelle.getSuivant();
-        }
+        positionActuelle.getSuivant().Prend(this);
+        positionActuelle.Libere();
+        positionActuelle = positionActuelle.getSuivant();
 
 	}
 

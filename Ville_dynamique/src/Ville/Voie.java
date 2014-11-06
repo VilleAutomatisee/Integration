@@ -1,5 +1,6 @@
 package Ville;
 
+import javax.swing.text.Position;
 import java.util.ArrayList;
 
 
@@ -84,4 +85,33 @@ public class Voie {
        }
         System.out.println();
     }
+
+    /**
+     * On fait circuler toutes les voitures présents sur cette voie.
+     */
+    public void circuler()
+    {
+        // pour chaque voiture présente sur la voie.
+        int i;
+        PositionBloc tmp = null ;
+
+        for( i = this.listPositionsBlocs.size()-1; i > 0; i-- )
+        {
+            tmp = this.listPositionsBlocs.get( i );
+            if( tmp != null )
+            {
+                Voiture voiture = tmp.getVoiturePresente();
+                if( voiture != null )
+                {
+                    voiture.avancerVoiture();
+
+                    System.out.println( "Avance" );
+                }
+
+                this.afficheVoie();
+            }
+        }
+    }
+
+
 }

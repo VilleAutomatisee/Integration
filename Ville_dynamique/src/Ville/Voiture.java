@@ -1,6 +1,6 @@
 package Ville;
 
-public class Voiture
+public class Voiture extends Thread
 {
 
 
@@ -54,6 +54,19 @@ public class Voiture
         {
             this.avancerVoiture();
         }
+    }
+
+    public void run(){
+            while (!isInterrupted()) {
+                synchronized (positionActuelle) {
+                     try {
+                         this.avancerVoiture();
+                    }catch(Exception e){
+                         e.printStackTrace();
+                     }
+                }
+            }
+
     }
 
 	

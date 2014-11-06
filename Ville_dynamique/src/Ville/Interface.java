@@ -8,7 +8,8 @@ public class Interface {
     private PositionBloc entree ;
     private PositionBloc sortie ;
 
-    public Interface(PositionBloc entree, PositionBloc sortie) {
+    public Interface( PositionBloc entree, PositionBloc sortie )
+    {
         this.entree = entree;
         this.sortie = sortie;
     }
@@ -23,9 +24,7 @@ public class Interface {
 
     public void connectRoute(Interface interfaceEntreeSortie)
     {
-
-        interfaceEntreeSortie.getSortie().setSuivant(this.getEntree());
-
-        this.getSortie().setSuivant(interfaceEntreeSortie.getEntree());
+        interfaceEntreeSortie.getSortie().setSuivant( this.getEntree() );
+        this.getSortie().setSuivant( interfaceEntreeSortie.getEntree() );
     }
 }

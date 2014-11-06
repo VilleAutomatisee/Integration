@@ -19,7 +19,6 @@ public class Carrefour {
 
     private void genInterfacesCarrefour()
     {
-
         PositionBloc positionNordOuest  = new PositionBloc ();
         PositionBloc positionSudOuest   = new PositionBloc ();
         PositionBloc positionNordEst    = new PositionBloc ();
@@ -34,8 +33,6 @@ public class Carrefour {
         this.faceNord       = new Interface(positionNordOuest   , positionNordEst);
         this.faceOuest      = new Interface(positionNordOuest   , positionSudOuest);
         this.faceSud        = new Interface(positionSudOuest    , positionSudEst);
-
-
     }
 
     public Interface getFaceOuest() {

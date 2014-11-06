@@ -95,20 +95,25 @@ public class Voie {
         int i;
         PositionBloc tmp = null ;
 
-        for( i = this.listPositionsBlocs.size()-1; i > 0; i-- )
+        boolean a = true;
+        while( a )
         {
-            tmp = this.listPositionsBlocs.get( i );
-            if( tmp != null )
+            // toute la voie.
+            for( i = this.listPositionsBlocs.size()-1; i >= 0; i-- )
             {
-                Voiture voiture = tmp.getVoiturePresente();
-                if( voiture != null )
+                tmp = this.listPositionsBlocs.get( i );
+                if( tmp != null )
                 {
-                    voiture.avancerVoiture();
+                    Voiture voiture = tmp.getVoiturePresente();
+                    if( voiture != null )
+                    {
+                        voiture.avancerVoiture();
 
-                    System.out.println( "Avance" );
+                        System.out.println( "Avance" );
+                    }
+
+                    this.afficheVoie();
                 }
-
-                this.afficheVoie();
             }
         }
     }

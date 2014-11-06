@@ -8,14 +8,11 @@ public class PositionBloc
     private boolean                                 debut;
     private Voiture                                 voiturePresente;
 
-
-
-    public PositionBloc(boolean debut)
+    public PositionBloc( boolean debut )
     {
         this.debut              = debut ;
         this.voiturePresente    = null ;
     }
-
 
     public PositionBloc()
     {
@@ -27,6 +24,7 @@ public class PositionBloc
     public synchronized void Prend(Voiture v) {
         while ( voiturePresente!=null ) {
             try {
+                System.out.println( " \n Wait \n" );
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();

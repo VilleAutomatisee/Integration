@@ -8,7 +8,7 @@ import java.util.Random;
 public class Ville {
 
     private List<Route>     listRoute;
-    private List<Voie>      listVoie;
+    private static List<Voie>      listVoies;
     private List<Voiture>   listVoiture;
 
     private int nbRoute;
@@ -18,7 +18,7 @@ public class Ville {
     {
 
         this.listRoute          = new ArrayList<Route>();
-        this.listVoie           = new ArrayList<Voie>();
+        this.listVoies           = new ArrayList<Voie>();
         this.listVoiture        = new ArrayList<Voiture>();
 
         this.generateurVille();
@@ -29,15 +29,15 @@ public class Ville {
     {
 
 
-        Voie voie        = new Voie(16);
+        /*Voie voie        = new Voie(16);
         Voie voie2       = new Voie(13);
         Voie voie3       = new Voie(5);
         Voie voie4       = new Voie(5);
 
-        this.listVoie.add(voie);
-        this.listVoie.add(voie2);
-        this.listVoie.add(voie3);
-        this.listVoie.add(voie4);
+        this.listVoies.add(voie);
+        this.listVoies.add(voie2);
+        this.listVoies.add(voie3);
+        this.listVoies.add(voie4);
 
         voie.connection(voie2);
         voie4.connection(voie3);
@@ -68,7 +68,7 @@ public class Ville {
         Voiture v2 = new Voiture();
 
         this.listVoiture.add(v1);
-        this.listVoiture.add(v2);
+        this.listVoiture.add(v2);*/
 
 
     }
@@ -87,6 +87,23 @@ public class Ville {
 
         return this.listRoute.get(indiceRouteAleatoire).getEntreeAleatoire();
 
+    }
+
+    public void addVoie(Voie voie)
+    {
+        this.listVoies.add( voie );
+    }
+
+    public static void afficher()
+    {
+        int voiesCount = listVoies.size();
+
+        Voie voie = null;
+        for( int i = 1; i <= voiesCount; i++ )
+        {
+            voie = listVoies.get( i );
+            voie.afficheVoie();
+        }
     }
 
 

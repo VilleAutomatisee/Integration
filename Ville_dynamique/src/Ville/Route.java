@@ -13,11 +13,11 @@ public class Route  {
     private Interface   sortieEntree;
 
 
-    public Route(int nbPositionRoute)
+    public Route(String nom,int nbPositionRoute)
 	{
 
-		this.sens1               = new Voie(nbPositionRoute);
-        this.sens2               = new Voie(nbPositionRoute);
+		this.sens1               = new Voie(nom,nbPositionRoute);
+        this.sens2               = new Voie(nom,nbPositionRoute);
         this.entreeSortie        = new Interface(sens1.getEntreeVoie(), sens2.getSortieVoie());// --------------->
         this.sortieEntree        = new Interface(sens2.getEntreeVoie(), sens1.getSortieVoie());// <---------------
 

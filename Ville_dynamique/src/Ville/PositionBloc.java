@@ -3,13 +3,19 @@ package Ville;
 public class PositionBloc
 {
 
+    private String nom;
+    int num;
     private PositionBloc                            suivant;
     private PositionBloc                            sortie; // --- TO DO : Voir si n'y a pas moyen de faire de l'héritage --> FLEME
     private boolean                                 debut;
     private Voiture                                 voiturePresente;
 
-    public PositionBloc( boolean debut )
+    public PositionBloc(String nom, int num, boolean debut )
     {
+        this.nom = nom;
+        this.num = num;
+        this.suivant            =null;
+        this.sortie             = null;
         this.debut              = debut ;
         this.voiturePresente    = null ;
     }
@@ -17,14 +23,17 @@ public class PositionBloc
     public PositionBloc()
     {
         // Constructeur pour les positions d'un carrefour
-        this.voiturePresente    = null ;
+        this.suivant            =null;
         this.sortie             = null;
+        this.debut=false;
+        this.voiturePresente    = null ;
+
     }
 
     public synchronized void Prend(Voiture v) {
         while ( voiturePresente!=null ) {
             try {
-                System.out.println( " \n Wait \n" );
+                System.out.println( v.getNom()+" Wait" );
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -63,6 +72,10 @@ public class PositionBloc
     public void setSortie(PositionBloc sortie)
     {
         this.sortie = sortie;
+    }
+    @Override
+    public String toString() {
+        return new String(num+" "+nom);
     }
 
 

@@ -9,33 +9,32 @@ import java.util.ArrayList;
  */
 public class Voie {
 
+    private String nom;
     private ArrayList<PositionBloc> listPositionsBlocs;
     private PositionBloc debutVoie;
     private PositionBloc finVoie;
 
-    public Voie(int nbPositionBloc)
+    public Voie(String nom,int nbPositionBloc)
     {
-
+        this.nom = nom;
         listPositionsBlocs = new ArrayList<PositionBloc>();
 
-        listPositionsBlocs = this.genPositionBloc(nbPositionBloc);
+         this.genPositionBloc(nbPositionBloc);
 
     }
 
     // Génération de la liste chainée de taille [nbPositionBloc] PositionBloc
 
-    private ArrayList<PositionBloc> genPositionBloc(int nbPositionBloc)
+    private void genPositionBloc(int nbPositionBloc)
     {
 
-        PositionBloc positionSuivante = null;
-
-        PositionBloc positionCourante = new PositionBloc(true);
+        PositionBloc positionCourante = new PositionBloc(nom,1,true);
 
         this.listPositionsBlocs.add(positionCourante);
 
         for(int i = 0 ; i < nbPositionBloc ; i++)
         {
-            PositionBloc positionNouvelle = new PositionBloc(false);
+            PositionBloc positionNouvelle = new PositionBloc(nom,i,false);
 
             positionCourante.setSuivant(positionNouvelle);
 
@@ -45,17 +44,17 @@ public class Voie {
         }
 
         this.finVoie = positionCourante;
-
-        return listPositionsBlocs;
     }
 
 
-    public void ajouterNouvelleVoiture(Voiture v) {
-
+    public void ajouterNouvelleVoiture( Voiture v )
+    {
         PositionBloc debutDeVoie = getEntreeVoie();
         debutDeVoie.setVoiturePresente(v);
-    }
 
+        System.out.println( "Voiture ajoutée." );
+    }
+    public PositionBloc getPosition(int i) { return this.listPositionsBlocs.get(i);}
     public PositionBloc getEntreeVoie()
     {
         return this.listPositionsBlocs.get(0);
@@ -89,9 +88,9 @@ public class Voie {
     /**
      * On fait circuler toutes les voitures présents sur cette voie.
      */
-    public void circuler()
-    {
-        // pour chaque voiture présente sur la voie.
+    /*public void circuler()
+    {*/
+        /*// pour chaque voiture présente sur la voie.
         int i;
         PositionBloc tmp = null ;
 
@@ -112,11 +111,17 @@ public class Voie {
                         System.out.println( "Avance" );
                     }
 
-                    this.afficheVoie();
+
                 }
             }
-        }
-    }
+
+
+            this.afficheVoie();
+        }*/
+
+
+
+    /*}*/
 
 
 }

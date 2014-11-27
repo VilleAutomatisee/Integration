@@ -1,12 +1,16 @@
 package Ville;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PositionBloc
 {
 
     private String nom;
     int num;
-    private PositionBloc                            suivant;
-    private PositionBloc                            sortie; // --- TO DO : Voir si n'y a pas moyen de faire de l'héritage --> FLEME
+    private List<PositionBloc>                      listeSuivants;
+    private PositionBloc                            sortie;
+
     private boolean                                 debut;
     private Voiture                                 voiturePresente;
 
@@ -14,7 +18,7 @@ public class PositionBloc
     {
         this.nom = nom;
         this.num = num;
-        this.suivant            =null;
+        this.listeSuivants      = new ArrayList<PositionBloc>();
         this.sortie             = null;
         this.debut              = debut ;
         this.voiturePresente    = null ;
@@ -23,9 +27,9 @@ public class PositionBloc
     public PositionBloc()
     {
         // Constructeur pour les positions d'un carrefour
-        this.suivant            =null;
+        this.listeSuivants      = new ArrayList<PositionBloc>();
         this.sortie             = null;
-        this.debut=false;
+        this.debut              = false;
         this.voiturePresente    = null ;
 
     }
@@ -49,9 +53,9 @@ public class PositionBloc
     /**
      * Getters - setters
      */
-    public void setSuivant( PositionBloc p )
+    public void addSuivant(PositionBloc p)
     {
-        this.suivant = p;
+        this.listeSuivants.add( p );
     }
 
     public void setVoiturePresente(Voiture v)
@@ -59,9 +63,14 @@ public class PositionBloc
         this.voiturePresente = v;
     }
 
-    public PositionBloc getSuivant()
+    public List<PositionBloc> getSuivants()
     {
-        return suivant;
+        return listeSuivants;
+    }
+    public PositionBloc getSuivant( int i )
+    {
+        //System.out.println( "Je passe au suivant d'index " + i );
+        return this.listeSuivants.get( i );
     }
 
     public Voiture getVoiturePresente()

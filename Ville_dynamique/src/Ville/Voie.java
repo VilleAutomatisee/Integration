@@ -1,6 +1,5 @@
 package Ville;
 
-import javax.swing.text.Position;
 import java.util.ArrayList;
 
 
@@ -17,7 +16,7 @@ public class Voie {
     public Voie(String nom,int nbPositionBloc)
     {
         this.nom = nom;
-        listPositionsBlocs = new ArrayList<PositionBloc>();
+        this.listPositionsBlocs = new ArrayList<PositionBloc>();
 
          this.genPositionBloc(nbPositionBloc);
 
@@ -36,7 +35,7 @@ public class Voie {
         {
             PositionBloc positionNouvelle = new PositionBloc(nom,i,false);
 
-            positionCourante.setSuivant(positionNouvelle);
+            positionCourante.addSuivant(positionNouvelle);
 
             this.listPositionsBlocs.add(positionNouvelle);
 
@@ -44,6 +43,11 @@ public class Voie {
         }
 
         this.finVoie = positionCourante;
+    }
+
+    public PositionBloc getBlockAleatoire(){
+        int b = (int)Math.random()*this.listPositionsBlocs.size();
+        return this.listPositionsBlocs.get(b);
     }
 
 
@@ -62,7 +66,7 @@ public class Voie {
 
     public void connection(Voie voie2)
     {
-        this.finVoie.setSuivant(voie2.getEntreeVoie());
+        this.finVoie.addSuivant(voie2.getEntreeVoie());
     }
 
     public PositionBloc getSortieVoie() {

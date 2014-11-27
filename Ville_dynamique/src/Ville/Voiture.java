@@ -24,19 +24,32 @@ public class Voiture extends Thread
     public PositionBloc getPositionActuelle() {
         return positionActuelle;
     }
+
     public String getNom() { return nom; }
+
 	public boolean avancerVoiture ()
 	{
-        PositionBloc positionsuivante = positionActuelle.getSuivant();
-        if ( positionsuivante==null  ) {
+        int nombreBlocksSuivants = positionActuelle.getSuivants().size();
+        int i = (int) Math.random() * nombreBlocksSuivants;
+
+        if ( nombreBlocksSuivants == 0 )  {
             System.out.println("A la fin");
             return false;
         }
-        System.out.println( "Avancer voiture "+nom+" je suis en "+positionActuelle+" je vais en "+positionActuelle.getSuivant());
 
-        positionActuelle.getSuivant().Prend(this);
+        PositionBloc positionsuivante = positionActuelle.getSuivant( i );
+
+        if ( positionsuivante == null )
+        {
+            System.out.println( "A la fin" );
+            return false;
+        }
+
+        System.out.println( "Avancer voiture "+nom+" je suis en "+positionActuelle+" je vais en "+positionActuelle.getSuivant( i ));
+
+        positionActuelle.getSuivant( i ).Prend(this);
         positionActuelle.Libere();
-        positionActuelle = positionActuelle.getSuivant();
+        positionActuelle = positionActuelle.getSuivant( i );
         return true;
 	}
 

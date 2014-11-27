@@ -2,40 +2,39 @@ package Ville;
 
 import java.util.Random;
 
-public class Route  {
-
-
-
+public class Route
+{
 	private Voie 	    sens1;
-	private Voie 	    sens2;
+	private Voie        sens2;
 
-    private Interface   entreeSortie;// Les interface de la route sont ses entrees et sorties
+    private Interface   entreeSortie; // les interface de la route sont ses entrees et sorties
     private Interface   sortieEntree;
 
-
-    public Route(String nom,int nbPositionRoute)
+    public Route( String nom, int nbPositionRoute )
 	{
-
-		this.sens1               = new Voie(nom,nbPositionRoute);
-        this.sens2               = new Voie(nom,nbPositionRoute);
-        this.entreeSortie        = new Interface(sens1.getEntreeVoie(), sens2.getSortieVoie());// --------------->
-        this.sortieEntree        = new Interface(sens2.getEntreeVoie(), sens1.getSortieVoie());// <---------------
-
+        this.sens1          = new Voie( nom, nbPositionRoute );
+        this.sens2          = new Voie( nom, nbPositionRoute );
+        this.entreeSortie   = new Interface( sens1.getEntreeVoie(), sens2.getSortieVoie() );    // --------------->
+        this.sortieEntree   = new Interface( sens2.getEntreeVoie(), sens1.getSortieVoie() );    // <---------------
 	}
 
-    public Interface getEntreeSortie() {
+    public Interface getEntreeSortie()
+    {
         return entreeSortie;
     }
 
-    public Interface getSortieEntree() {
+    public Interface getSortieEntree()
+    {
         return sortieEntree;
     }
 
-    public Voie getSens2() {
+    public Voie getSens2()
+    {
         return sens2;
     }
 
-    public Voie getSens1() {
+    public Voie getSens1()
+    {
         return sens1;
     }
 
@@ -48,12 +47,10 @@ public class Route  {
 
     public Voie getEntreeAleatoire()
     {
-
         Random rand = new Random();
+        int sens    = rand.nextInt(1);
 
-        int sens  = rand.nextInt(1);
-
-        if(sens == 1)
+        if( sens == 1 )
         {
             return this.sens1;
         }

@@ -24,7 +24,7 @@ public class Interface {
 
     public void connectRoute(Interface interfaceEntreeSortie)
     {
-        interfaceEntreeSortie.getSortie().setSuivant( this.getEntree() );
-        this.getSortie().setSuivant( interfaceEntreeSortie.getEntree() );
+        interfaceEntreeSortie.getSortie().addSuivant(this.getEntree());
+        this.getSortie().addSuivant(interfaceEntreeSortie.getEntree());
     }
 }

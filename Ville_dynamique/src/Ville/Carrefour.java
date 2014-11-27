@@ -1,7 +1,5 @@
 package Ville;
 
-import java.util.List;
-
 /**
  * Created by leite_2 on 09/10/2014.
  */
@@ -24,10 +22,10 @@ public class Carrefour {
         PositionBloc positionNordEst    = new PositionBloc ();
         PositionBloc positionSudEst     = new PositionBloc ();
 
-        positionNordOuest.setSuivant(positionNordEst);
-        positionNordEst.setSuivant(positionSudEst);
-        positionSudEst.setSuivant(positionSudOuest);
-        positionSudOuest.setSuivant(positionNordOuest);
+        positionNordOuest.addSuivant(positionNordEst);
+        positionNordEst.addSuivant(positionSudEst);
+        positionSudEst.addSuivant(positionSudOuest);
+        positionSudOuest.addSuivant(positionNordOuest);
 
         this.faceEst        = new Interface(positionNordEst     , positionSudEst);
         this.faceNord       = new Interface(positionNordOuest   , positionNordEst);

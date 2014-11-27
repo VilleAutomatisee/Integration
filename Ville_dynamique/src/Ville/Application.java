@@ -5,38 +5,28 @@ package Ville;
  */
 public class Application {
 
-    public static void main(String[] args)
+    public static void main( String[] args )
     {
-       // Ville v1    = new Ville();
-        Voie voie   = new Voie("rue de la liberation", 50 );
+        Ville v1    = new Ville( "Springfield" );
+       /// Voie voie   = new Voie( "rue de la liberation", 50 );
 
         //v1.addVoie( voie );
 
-        voie.afficheVoie();
-        Voiture voiture1    = new Voiture("Peugeot", voie.getEntreeVoie(), 2 );
-
         //voie.afficheVoie();
-        Voiture voiture2    = new Voiture("Citroen", voie.getPosition(1),1 );
 
-        //Voiture voiture3    = new Voiture( voie.getEntreeVoie() );
-        //Voiture voiture4    = new Voiture( voie.getEntreeVoie() );
-
-        //voie.afficheVoie();
-        //Voiture voiture3    = new Voiture( voie.getEntreeVoie() );
-
-        //voie.afficheVoie();
-        //Voiture voiture4    = new Voiture( voie.getEntreeVoie() );
-
-        //voie.afficheVoie();
+        Voiture voiture1    = new Voiture( "Peugeot", v1.getVoieAleatoire().getPosition( 1 ), 2 );
+        Voiture voiture2    = new Voiture( "Citroen", v1.getVoieAleatoire().getPosition( 5 ), 3 );
 
         voiture1.start();
         voiture2.start();
 
-        voie.afficheVoie();
-        try {
+        try
+        {
             voiture1.join();
             voiture2.join();
-        } catch(Exception e) {
+        }
+        catch( Exception e )
+        {
             e.printStackTrace();
         }
     }

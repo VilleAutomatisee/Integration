@@ -7,7 +7,7 @@ public class Application {
 
     public static void main( String[] args )
     {
-        Ville v1    = new Ville( "Springfield" );
+        Ville v1            = new Ville( "Springfield" );
 
 
         Voiture voiture1    = new Voiture( "Peugeot", v1.getVoieAleatoire().getPosition( 1 ), 2 );

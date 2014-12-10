@@ -31,7 +31,7 @@ public class Ville
     {
         // On cree un carrefour : 4 Routes et un Carrefour
         Route r1         = new Route( "Route de la Paix1", 3 );
-        Route r2         = new Route( "Route de la Paix12", 5 );
+        Route r2         = new Route( "Route de la Paix12", 5 ); 
 
         r2.getEntreeSortie().connectRoute(r1.getSortieEntree());
         Voie v1         = new Voie("rue de la liberation",5);

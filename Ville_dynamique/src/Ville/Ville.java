@@ -29,23 +29,53 @@ public class Ville
 
     private void generateurVille()
     {
-        // On cree un carrefour : 4 Routes et un Carrefour
-        Route r1         = new Route( "Route de la Paix1", 3 );
-        Route r2         = new Route( "Route de la Paix12", 5 ); 
+        Voie voie                   = new Voie( "Rue de Lille"         , 16 );
+        Voie voie2                  = new Voie( "Rue de Metz"          , 13 );
+        Voie voie3                  = new Voie( "Allée des Lilas"      , 5  );
+        Voie voie4                  = new Voie( "Rue de la liberté"    , 5  );
 
-        r2.getEntreeSortie().connectRoute(r1.getSortieEntree());
-        Voie v1         = new Voie("rue de la liberation",5);
+        this.listVoies.add(voie);
+        this.listVoies.add(voie2);
+        this.listVoies.add(voie3);
+        this.listVoies.add(voie4);
+
+        // On cree un carrefour : 4 Routes et un Carrefour
+
+        Route r1         = new Route( "Avenue de la république"     , 3 );
+        Route r2         = new Route( "Rue Turgot"                  , 5 );
+        Route r3         = new Route( "Rue Rouget de Lisle"         , 4 );
+        Route r4         = new Route( "Avenue Maurice Bertaux"      , 8 );
+        Route r5         = new Route( "Avenue Jules Ferry"          , 3 );
+        Route r6         = new Route( "Rue Montgolifier"            , 5 );
+        Route r7         = new Route( "Rue Marie louise"            , 4 );
+        Route r8         = new Route( "Rue de Mont Royal"           , 8 );
 
         this.listRoute.add( r1 );
         this.listRoute.add( r2 );
-     //   this.listRoute.add( r3 );
-     //   this.listRoute.add( r4 );
+        this.listRoute.add( r3 );
+        this.listRoute.add( r4 );
+        this.listRoute.add( r5 );
+        this.listRoute.add( r6 );
+        this.listRoute.add( r7 );
+        this.listRoute.add( r8 );
 
-        Voiture v1 = new Voiture();
-        //Voiture v2 = new Voiture();
+        // Dans notre projet on considère qu'un carrefour est constitué de 4 directions : nord - sud - est - ouest
 
-        this.listVoiture.add( v1 );
-      //  this.listVoiture.add( v2 );
+        Carrefour c      = new Carrefour();
+
+        c.getFaceOuest().connectRoute(r1.getEntreeSortie());
+        c.getFaceEst().connectRoute(r2.getEntreeSortie());
+        c.getFaceNorth().connectRoute(r3.getEntreeSortie());
+        c.getFaceSouth().connectRoute(r4.getEntreeSortie());
+
+
+        // Connection des routes entres elles en cycle
+
+
+        r1.getEntreeSortie().connectRoute( r2.getSortieEntree() );
+        r1.getSortieEntree().connectRoute( r3.getEntreeSortie() );
+
+        r2.getEntreeSortie().connectRoute( r4.getSortieEntree() ); // R1 , R3 DONE
     }
 
     public Voie getVoieAleatoire()

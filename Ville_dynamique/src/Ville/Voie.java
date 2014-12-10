@@ -45,10 +45,19 @@ public class Voie {
         this.finVoie = positionCourante;
     }
 
+
+
+
     public PositionBloc getBlockAleatoire(){
+
         int b = (int)Math.random()*this.listPositionsBlocs.size();
         return this.listPositionsBlocs.get(b);
     }
+
+
+
+
+
 
 
     public void ajouterNouvelleVoiture( Voiture v )
@@ -58,20 +67,58 @@ public class Voie {
 
         System.out.println( "Voiture ajoutée." );
     }
-    public PositionBloc getPosition(int i) { return this.listPositionsBlocs.get(i);}
+
+
+
+
+
+
+
+    public PositionBloc getPosition(int i)
+    {
+        return this.listPositionsBlocs.get(i);
+    }
+
+
+
+
+
+
+
     public PositionBloc getEntreeVoie()
     {
         return this.listPositionsBlocs.get(0);
     }
+
+
+
+
+
+
+    public PositionBloc getSortieVoie()
+    {
+        return finVoie;
+    }
+
+
+
+
+
+
+
+
 
     public void connection(Voie voie2)
     {
         this.finVoie.addSuivant(voie2.getEntreeVoie());
     }
 
-    public PositionBloc getSortieVoie() {
-        return finVoie;
-    }
+
+
+
+
+
+
 
     public void afficheVoie()
     {
@@ -88,6 +135,12 @@ public class Voie {
        }
         System.out.println();
     }
+
+
+
+
+
+
 
     /**
      * On fait circuler toutes les voitures présents sur cette voie.

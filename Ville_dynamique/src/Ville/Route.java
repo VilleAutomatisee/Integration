@@ -11,12 +11,14 @@ public class Route
     private Interface   sortieEntree;
 
     public Route( String nom, int nbPositionRoute )
-	{
-        this.sens1          = new Voie( nom, nbPositionRoute );
-        this.sens2          = new Voie( nom, nbPositionRoute );
-        this.entreeSortie   = new Interface( sens1.getEntreeVoie(), sens2.getSortieVoie() );    // --------------->
-        this.sortieEntree   = new Interface( sens2.getEntreeVoie(), sens1.getSortieVoie() );    // <---------------
-	}
+    {
+        this.sens1 = new Voie(nom, nbPositionRoute);
+        this.sens2 = new Voie(nom, nbPositionRoute);
+        this.entreeSortie = new Interface(this.sens1.getEntreeVoie(), this.sens2.getSortieVoie());    // --------->
+        this.sortieEntree = new Interface(this.sens2.getEntreeVoie(), this.sens1.getSortieVoie());    // <--------
+
+    }
+
 
     public Interface getEntreeSortie()
     {

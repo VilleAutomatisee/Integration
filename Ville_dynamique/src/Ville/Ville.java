@@ -49,6 +49,12 @@ public class Ville
         Route r6         = new Route( "Rue Montgolifier"            , 5 );
         Route r7         = new Route( "Rue Marie louise"            , 4 );
         Route r8         = new Route( "Rue de Mont Royal"           , 8 );
+        Route r9         = new Route( "Avenue Jean Baptiste Chauvin", 3 );
+        Route r10        = new Route( "Rue Manel Gharbi"            , 5 );
+        Route r11        = new Route( "Rue Nzamba-Maleck "          , 4 );
+        Route r12        = new Route( "Rue Dumouchelle Kev"         , 8 );
+
+
 
         this.listRoute.add( r1 );
         this.listRoute.add( r2 );
@@ -59,14 +65,6 @@ public class Ville
         this.listRoute.add( r7 );
         this.listRoute.add( r8 );
 
-        // Dans notre projet on considère qu'un carrefour est constitué de 4 directions : nord - sud - est - ouest
-
-        Carrefour c      = new Carrefour();
-
-        c.getFaceOuest().connectRoute(r1.getEntreeSortie());
-        c.getFaceEst().connectRoute(r2.getEntreeSortie());
-        c.getFaceNorth().connectRoute(r3.getEntreeSortie());
-        c.getFaceSouth().connectRoute(r4.getEntreeSortie());
 
 
         // Connection des routes entres elles en cycle
@@ -74,16 +72,42 @@ public class Ville
 
         r1.getEntreeSortie().connectRoute( r2.getSortieEntree() );
         r1.getSortieEntree().connectRoute( r3.getEntreeSortie() );
+        r2.getEntreeSortie().connectRoute( r4.getSortieEntree() ); // R1 , R2 DONE
+        r3.getSortieEntree().connectRoute( r5.getEntreeSortie() ); // R3 DONE
+        r4.getEntreeSortie().connectRoute( r6.getEntreeSortie() ); // R4 , R5
+        r5.getSortieEntree().connectRoute( r7.getSortieEntree() );
+        r6.getSortieEntree().connectRoute( r8.getEntreeSortie() );
+        r7.getEntreeSortie().connectRoute( r8.getSortieEntree() );
 
-        r2.getEntreeSortie().connectRoute( r4.getSortieEntree() ); // R1 , R3 DONE
+
+        System.out.println(r1.getEntreeAleatoire());
+        voie.connectionEntree(r1.getEntreeAleatoire());
+        voie.connectionSortie(r2.getEntreeAleatoire());
+
+        voie2.connectionSortie(r7.getEntreeAleatoire());
+        voie2.connectionEntree(r8.getEntreeAleatoire());
+
+        voie3.connectionSortie(r4.getEntreeAleatoire());
+        voie3.connectionEntree(r5.getEntreeAleatoire());
+
+        voie4.connectionSortie(r3.getEntreeAleatoire());
+        voie4.connectionEntree(r4.getEntreeAleatoire());
+
+        // Dans notre projet on considère qu'un carrefour est constitué de 4 directions : nord - sud - est - ouest
+
     }
+
+
+
 
     public Voie getVoieAleatoire()
     {
-        Random rand                 = new Random();
-        int indiceRouteAleatoire    = rand.nextInt( this.listRoute.size() );
+        Random rand                     = new Random();
+        int indiceRouteAleatoire        = rand.nextInt( this.listRoute.size() );
+
         return this.listRoute.get(indiceRouteAleatoire).getEntreeAleatoire();
     }
+
 
     public void addVoie( Voie voie )
     {

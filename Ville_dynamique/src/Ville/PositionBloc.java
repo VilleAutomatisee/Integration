@@ -6,8 +6,8 @@ import java.util.List;
 public class PositionBloc
 {
 
-    private String nom;
-    int num;
+    private String                                  nom;
+    private int                                     num;
     private List<PositionBloc>                      listeSuivants;
     private PositionBloc                            sortie;
 
@@ -16,8 +16,8 @@ public class PositionBloc
 
     public PositionBloc(String nom, int num, boolean debut )
     {
-        this.nom = nom;
-        this.num = num;
+        this.nom                = nom;
+        this.num                = num;
         this.listeSuivants      = new ArrayList<PositionBloc>();
         this.sortie             = null;
         this.debut              = debut ;

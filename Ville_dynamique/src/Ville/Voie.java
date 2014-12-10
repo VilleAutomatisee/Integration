@@ -10,15 +10,14 @@ public class Voie {
 
     private String nom;
     private ArrayList<PositionBloc> listPositionsBlocs;
-    private PositionBloc debutVoie;
-    private PositionBloc finVoie;
+
 
     public Voie(String nom,int nbPositionBloc)
     {
-        this.nom = nom;
-        this.listPositionsBlocs = new ArrayList<PositionBloc>();
+        this.nom                        = nom;
+        this.listPositionsBlocs         = new ArrayList<PositionBloc>();
 
-         this.genPositionBloc(nbPositionBloc);
+        this.genPositionBloc(nbPositionBloc);
 
     }
 
@@ -27,13 +26,13 @@ public class Voie {
     private void genPositionBloc(int nbPositionBloc)
     {
 
-        PositionBloc positionCourante = new PositionBloc(nom,1,true);
+        PositionBloc positionCourante = new PositionBloc(this.nom , 1 ,true );
 
         this.listPositionsBlocs.add(positionCourante);
 
-        for(int i = 0 ; i < nbPositionBloc ; i++)
+        for(int i = 1 ; i < nbPositionBloc +1 ; i++ )
         {
-            PositionBloc positionNouvelle = new PositionBloc(nom,i,false);
+            PositionBloc positionNouvelle = new PositionBloc( nom , i , false);
 
             positionCourante.addSuivant(positionNouvelle);
 
@@ -41,8 +40,6 @@ public class Voie {
 
             positionCourante = positionNouvelle ;
         }
-
-        this.finVoie = positionCourante;
     }
 
 
@@ -97,7 +94,7 @@ public class Voie {
 
     public PositionBloc getSortieVoie()
     {
-        return finVoie;
+        return this.listPositionsBlocs.get(this.listPositionsBlocs.size()-1);
     }
 
 
@@ -108,13 +105,17 @@ public class Voie {
 
 
 
-    public void connection(Voie voie2)
+    public void connectionSortie(Voie voie2)
     {
-        this.finVoie.addSuivant(voie2.getEntreeVoie());
+        this.getSortieVoie().addSuivant(voie2.getEntreeVoie());
     }
 
 
 
+    public void connectionEntree(Voie voie2)
+    {
+        this.getEntreeVoie().addSuivant(voie2.getSortieVoie());
+    }
 
 
 
@@ -180,5 +181,13 @@ public class Voie {
 
     /*}*/
 
-
+    @Override
+    public String toString() {
+        return "Voie{" +
+                "nom='" + nom + '\'' +
+                ", listPositionsBlocs=" + listPositionsBlocs +
+                ", debutVoie=" + this.getEntreeVoie() +
+                ", finVoie=" + this.getSortieVoie() +
+                '}';
+    }
 }

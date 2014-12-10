@@ -8,11 +8,7 @@ public class Application {
     public static void main( String[] args )
     {
         Ville v1    = new Ville( "Springfield" );
-       /// Voie voie   = new Voie( "rue de la liberation", 50 );
 
-        //v1.addVoie( voie );
-
-        //voie.afficheVoie();
 
         Voiture voiture1    = new Voiture( "Peugeot", v1.getVoieAleatoire().getPosition( 1 ), 2 );
         Voiture voiture2    = new Voiture( "Citroen", v1.getVoieAleatoire().getPosition( 5 ), 3 );

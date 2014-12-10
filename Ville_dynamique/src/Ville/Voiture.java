@@ -15,7 +15,7 @@ public class Voiture extends Thread
 
     public Voiture(String nom,PositionBloc p, int vitesse)
 	{
-        System.out.println( "Voiture "+nom+" ajoutée." );
+        System.out.println( "Voiture " +nom+" ajoutée." );
         this.nom = nom;
         this.positionActuelle = p;
         this.positionActuelle.setVoiturePresente(this);

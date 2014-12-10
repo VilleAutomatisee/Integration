@@ -13,7 +13,9 @@ public class Route
     public Route( String nom, int nbPositionRoute )
     {
         this.sens1 = new Voie(nom, nbPositionRoute);
+        System.out.println(this.sens1);
         this.sens2 = new Voie(nom, nbPositionRoute);
+        System.out.println(this.sens2);
         this.entreeSortie = new Interface(this.sens1.getEntreeVoie(), this.sens2.getSortieVoie());    // --------->
         this.sortieEntree = new Interface(this.sens2.getEntreeVoie(), this.sens1.getSortieVoie());    // <--------
 
@@ -47,18 +49,28 @@ public class Route
         this.sens2.afficheVoie();
     }
 
+    @Override
+    public String toString() {
+        return "Route{" +
+                "sens1=" + sens1 +
+                ", sens2=" + sens2 +
+                ", entreeSortie=" + entreeSortie +
+                ", sortieEntree=" + sortieEntree +
+                '}';
+    }
+
     public Voie getEntreeAleatoire()
     {
         Random rand = new Random();
         int sens    = rand.nextInt(1);
-
+        System.out.println( "indice " + sens) ;
         if( sens == 1 )
         {
             return this.sens1;
         }
         else
         {
-            return this.sens1;
+            return this.sens2;
         }
     }
 }

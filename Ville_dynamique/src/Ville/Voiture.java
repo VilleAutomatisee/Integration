@@ -13,27 +13,32 @@ public class Voiture extends Thread
 
     }
 
-    public Voiture(String nom,PositionBloc p, int vitesse)
+    public Voiture( String nom, PositionBloc p, int vitesse )
 	{
-        System.out.println( "Voiture " +nom+" ajoutée." );
-        this.nom = nom;
-        this.positionActuelle = p;
+        this.nom                    = nom;
+        this.positionActuelle       = p;
+        this.vitesse                = vitesse;
         this.positionActuelle.setVoiturePresente(this);
-        this.vitesse = vitesse;
 	}
-    public PositionBloc getPositionActuelle() {
+
+    public PositionBloc getPositionActuelle()
+    {
         return positionActuelle;
     }
 
-    public String getNom() { return nom; }
+    public String getNom()
+    {
+        return nom;
+    }
 
-	public boolean avancerVoiture ()
+	public boolean avancerVoiture()
 	{
-        int nombreBlocksSuivants = positionActuelle.getSuivants().size();
-        int i = (int) Math.random() * nombreBlocksSuivants;
+        int nombreBlocksSuivants    = positionActuelle.getSuivants().size();
+        int i                       = (int) (Math.random() * nombreBlocksSuivants);
 
-        if ( nombreBlocksSuivants == 0 )  {
-            System.out.println("A la fin");
+        if ( nombreBlocksSuivants == 0 )
+        {
+            System.out.println( "A la fin de la voie. Plus aucun block trouvé ("+ nombreBlocksSuivants +")." ) ;
             return false;
         }
 
@@ -41,22 +46,17 @@ public class Voiture extends Thread
 
         if ( positionsuivante == null )
         {
-            System.out.println( "A la fin" );
+            System.out.println( "A la fin de la voie. Plus aucun chemin possible." );
             return false;
         }
 
-        System.out.println( "Avancer voiture "+nom+" je suis en "+positionActuelle+" je vais en "+positionActuelle.getSuivant( i ));
+        System.out.println( nom+ " | " + positionActuelle + " --> "+positionActuelle.getSuivant( i ) );
 
-        positionActuelle.getSuivant( i ).Prend(this);
+        positionActuelle.getSuivant( i ).Prend( this );
         positionActuelle.Libere();
         positionActuelle = positionActuelle.getSuivant( i );
         return true;
 	}
-
-    public void afficherVoiture()
-    {
-        System.out.print(" o-o ");
-    }
 
     public void run()
     {

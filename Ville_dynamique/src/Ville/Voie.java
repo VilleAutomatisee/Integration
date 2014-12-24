@@ -2,192 +2,95 @@ package Ville;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by lenzamba on 09/10/2014.
- */
-public class Voie {
-
+public class Voie
+{
     private String nom;
-    private ArrayList<PositionBloc> listPositionsBlocs;
+    private ArrayList<PositionBloc> blocs;
+    private int sens;
 
-
-    public Voie(String nom,int nbPositionBloc)
+    public Voie( String nom, int nbPositionBloc, int sens )
     {
         this.nom                        = nom;
-        this.listPositionsBlocs         = new ArrayList<PositionBloc>();
+        this.blocs                      = new ArrayList<PositionBloc>();
+        this.sens                       = sens;
 
-        this.genPositionBloc(nbPositionBloc);
-
+        this.genPositionBloc( nbPositionBloc );
     }
 
     // Génération de la liste chainée de taille [nbPositionBloc] PositionBloc
-
-    private void genPositionBloc(int nbPositionBloc)
+    private void genPositionBloc( int nbPositionBloc )
     {
+        PositionBloc position           = null;
+        PositionBloc positionNouvelle   = null;
+        int numeroVoie                  = 0;
 
-        PositionBloc positionCourante = new PositionBloc(this.nom , 1 ,true );
-
-        this.listPositionsBlocs.add(positionCourante);
-
-        for(int i = 1 ; i < nbPositionBloc +1 ; i++ )
+        // création manuelle du premier bloc de la voie.
+        if( this.sens == 1 )
         {
-            PositionBloc positionNouvelle = new PositionBloc( nom , i , false);
-
-            positionCourante.addSuivant(positionNouvelle);
-
-            this.listPositionsBlocs.add(positionNouvelle);
-
-            positionCourante = positionNouvelle ;
+            position    = new PositionBloc( nom, 2, true );
         }
-    }
-
-
-
-
-    public PositionBloc getBlockAleatoire(){
-
-        int b = (int)Math.random()*this.listPositionsBlocs.size();
-        return this.listPositionsBlocs.get(b);
-    }
-
-
-
-
-
-
-
-    public void ajouterNouvelleVoiture( Voiture v )
-    {
-        PositionBloc debutDeVoie = getEntreeVoie();
-        debutDeVoie.setVoiturePresente(v);
-
-        System.out.println( "Voiture ajoutée." );
-    }
-
-
-
-
-
-
-
-    public PositionBloc getPosition(int i)
-    {
-        return this.listPositionsBlocs.get(i);
-    }
-
-
-
-
-
-
-
-    public PositionBloc getEntreeVoie()
-    {
-        return this.listPositionsBlocs.get(0);
-    }
-
-
-
-
-
-
-    public PositionBloc getSortieVoie()
-    {
-        return this.listPositionsBlocs.get(this.listPositionsBlocs.size()-1);
-    }
-
-
-
-
-
-
-
-
-
-    public void connectionSortie(Voie voie2)
-    {
-        this.getSortieVoie().addSuivant(voie2.getEntreeVoie());
-    }
-
-
-
-    public void connectionEntree(Voie voie2)
-    {
-        this.getEntreeVoie().addSuivant(voie2.getSortieVoie());
-    }
-
-
-
-
-
-    public void afficheVoie()
-    {
-       for (int i = 0 ; i < listPositionsBlocs.size() ; i++)
-       {
-           if(listPositionsBlocs.get(i).getVoiturePresente() == null)
-           {
-               System.out.print(" - ");
-           }
-           else
-           {
-               listPositionsBlocs.get(i).getVoiturePresente().afficherVoiture();
-           }
-       }
-        System.out.println();
-    }
-
-
-
-
-
-
-
-    /**
-     * On fait circuler toutes les voitures présents sur cette voie.
-     */
-    /*public void circuler()
-    {*/
-        /*// pour chaque voiture présente sur la voie.
-        int i;
-        PositionBloc tmp = null ;
-
-        boolean a = true;
-        while( a )
+        else
         {
-            // toute la voie.
-            for( i = this.listPositionsBlocs.size()-1; i >= 0; i-- )
+            position    = new PositionBloc( nom, 1, true );
+        }
+
+         for( int i = 1 ; i <= nbPositionBloc  ; i++ )
+        {
+            numeroVoie = i*2;
+            // numéros de rue pair à droite, et impair à gauche
+            if( this.sens == 1 )
             {
-                tmp = this.listPositionsBlocs.get( i );
-                if( tmp != null )
+                if( numeroVoie % 2 != 0 )
                 {
-                    Voiture voiture = tmp.getVoiturePresente();
-                    if( voiture != null )
-                    {
-                        voiture.avancerVoiture();
-
-                        System.out.println( "Avance" );
-                    }
-
-
+                    numeroVoie = numeroVoie + 1 ;
+                }
+            }
+            else
+            {
+                if( numeroVoie % 2 == 0 )
+                {
+                    numeroVoie  = numeroVoie - 1;
                 }
             }
 
+            positionNouvelle = new PositionBloc( nom , numeroVoie , false );
+            position.addSuivant( positionNouvelle );
+            position = positionNouvelle ;
+            this.blocs.add( position );
+        }
+    }
 
-            this.afficheVoie();
-        }*/
+    public PositionBloc getBlockAleatoire()
+    {
+        int b = (int) Math.random()*this.blocs.size();
+        return this.blocs.get( b );
+    }
+    
+    public PositionBloc getPosition( int i )
+    {
+        return this.blocs.get(i);
+    }
 
+    public PositionBloc getEntreeVoie()
+    {
+        return this.blocs.get( 0 );
+    }
 
+    public PositionBloc getSortieVoie()
+    {
+        return this.blocs.get( this.blocs.size()-1 );
+    }
 
-    /*}*/
+    public void addBlocSuivant( PositionBloc p )
+    {
+        this.blocs.add( p );
+    }
 
     @Override
     public String toString() {
         return "Voie{" +
                 "nom='" + nom + '\'' +
-                ", listPositionsBlocs=" + listPositionsBlocs +
-                ", debutVoie=" + this.getEntreeVoie() +
-                ", finVoie=" + this.getSortieVoie() +
+                ", taille voie=" + blocs.size() +
                 '}';
     }
 }

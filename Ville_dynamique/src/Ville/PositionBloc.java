@@ -9,56 +9,61 @@ public class PositionBloc
     private String                                  nom;
     private int                                     num;
     private List<PositionBloc>                      listeSuivants;
-    private PositionBloc                            sortie;
 
     private boolean                                 debut;
     private Voiture                                 voiturePresente;
 
-    public PositionBloc(String nom, int num, boolean debut )
+    public PositionBloc( String nom, int num, boolean debut )
     {
         this.nom                = nom;
         this.num                = num;
         this.listeSuivants      = new ArrayList<PositionBloc>();
-        this.sortie             = null;
         this.debut              = debut ;
         this.voiturePresente    = null ;
     }
 
     public PositionBloc()
     {
-        // Constructeur pour les positions d'un carrefour
+        // constructeur pour les positions d'un carrefour
+        this.nom                = "Intersection";
+        this.num                = 0;
         this.listeSuivants      = new ArrayList<PositionBloc>();
-        this.sortie             = null;
-        this.debut              = false;
+        this.debut              = true ;
         this.voiturePresente    = null ;
-
     }
 
-    public synchronized void Prend(Voiture v) {
-        while ( voiturePresente!=null ) {
-            try {
-                System.out.println( v.getNom()+" Wait" );
+    public synchronized void Prend( Voiture v )
+    {
+        while ( voiturePresente != null ) {
+            try
+            {
+                System.out.println( v.getNom()+" en attente." );
                 wait();
-            } catch (InterruptedException e) {
+            }
+            catch ( InterruptedException e )
+            {
                 e.printStackTrace();
             }
         }
+
         voiturePresente = v;
     }
-    public synchronized void Libere() {
-        voiturePresente=null;
+
+    public synchronized void Libere()
+    {
+        voiturePresente = null;
         notifyAll();
     }
 
     /**
      * Getters - setters
      */
-    public void addSuivant(PositionBloc p)
+    public void addSuivant( PositionBloc p )
     {
         this.listeSuivants.add( p );
     }
 
-    public void setVoiturePresente(Voiture v)
+    public void setVoiturePresente( Voiture v )
     {
         this.voiturePresente = v;
     }
@@ -67,9 +72,9 @@ public class PositionBloc
     {
         return listeSuivants;
     }
+
     public PositionBloc getSuivant( int i )
     {
-        //System.out.println( "Je passe au suivant d'index " + i );
         return this.listeSuivants.get( i );
     }
 
@@ -78,13 +83,15 @@ public class PositionBloc
         return voiturePresente;
     }
 
-    public void setSortie(PositionBloc sortie)
-    {
-        this.sortie = sortie;
-    }
     @Override
-    public String toString() {
-        return new String(num+" "+nom);
+    public String toString()
+    {
+        if( nom.equals( "Intersection" ) )
+        {
+            //return new String( num+" "+nom + " " + listeSuivants );
+        }
+
+        return new String( num+" "+nom + " " );
     }
 
 

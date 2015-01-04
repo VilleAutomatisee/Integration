@@ -3,6 +3,7 @@ package Ville;
 import java.util.ArrayList;
 import java.util.List;
 import Feux.*;
+import AgentSecurite.*;
 
 public class PositionBloc
 {
@@ -15,6 +16,9 @@ public class PositionBloc
 
     private Feux                                    feux;
 
+
+    private AgentSecurite agentSecurite;
+
     public PositionBloc( String nom, int num, boolean debut )
     {
         this.nom                = nom;
@@ -23,6 +27,7 @@ public class PositionBloc
         this.debut              = debut ;
         this.voiturePresente    = null ;
         this.feux               = null ;
+        this.agentSecurite = null;
     }
 
     public PositionBloc()
@@ -34,12 +39,14 @@ public class PositionBloc
         this.debut              = true ;
         this.voiturePresente    = null ;
         this.feux               = null;
+        this.agentSecurite = null;
     }
 
     public synchronized void Prend( Voiture v )
     {
         // si il y a une voiture déjà présente sur ce block, ou bien si on rencontre un feux rouge, alors attente.
-        while ( (voiturePresente != null) || ( this.feux != null && this.feux.getCurrentState().equals( "rouge" )) )
+        while ( (voiturePresente != null) || ( this.feux != null && this.feux.getCurrentState().equals( "rouge" ))
+                                          || ( this.agentSecurite != null && this.agentSecurite.getEmplacementPieton()=="route" ))
         {
             try
             {
@@ -50,6 +57,10 @@ public class PositionBloc
                 else if( this.feux != null && this.feux.getCurrentState().equals( "rouge" ) )
                 {
                     System.out.println( v.getNom() + " en attente, feux rouge rencontré." );
+                }
+                else if( this.agentSecurite != null && this.agentSecurite.getEmplacementPieton().equals( "route" ) )
+                {
+                    System.out.println( v.getNom() + " en attente, "+ this.agentSecurite.getNom() + " signale l'arret " );
                 }
 
                 wait();
@@ -70,6 +81,11 @@ public class PositionBloc
     }
 
     public synchronized void notifyChangementFeux()
+    {
+        notifyAll();
+    }
+
+    public synchronized void notifyPietonTrottoir()
     {
         notifyAll();
     }
@@ -119,5 +135,10 @@ public class PositionBloc
         this.feux = feux;
         this.feux.setPositionBloc( this );
     }
+
+    public void setAgentSecurite(AgentSecurite agentSecurite) {
+        this.agentSecurite = agentSecurite;
+    }
+
 
 }

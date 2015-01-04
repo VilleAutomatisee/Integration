@@ -1,5 +1,7 @@
 package Ville;
 
+import Feux.Feux;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,15 +15,15 @@ public class Ville
     private ArrayList<Route> routes;
     private String nom;
 
-    public Ville( String nom )
+    public Ville( String nom, List<Feux> feux )
     {
         this.nom            = nom;
         routes              = new ArrayList<Route>();
 
-        this.generateurVille();
+        this.generateurVille( feux );
     }
 
-    private void generateurVille()
+    private void generateurVille( List<Feux> feux )
     {
         // on créer les routes dans la ville.
         Route r1            = new Route( "Avenue de la république"          , 3 );
@@ -47,6 +49,10 @@ public class Ville
         //System.out.println( r4 );
 
         System.out.println( "Intersection\n\n" + intersection3 );
+
+        // quelques feux de circulation.
+        r2.getSens1().getEntreeVoie().setFeux( feux.get( 0 ) );
+        //r1.getSens1().getSortieVoie().setFeux( feux.get( 1 ) );
     }
 
     public Voie getVoieAleatoire()

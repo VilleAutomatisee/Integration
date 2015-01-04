@@ -2,16 +2,18 @@ package Ville;
 
 import java.util.ArrayList;
 import java.util.List;
+import Feux.*;
 
 public class PositionBloc
 {
-
     private String                                  nom;
     private int                                     num;
     private List<PositionBloc>                      listeSuivants;
 
     private boolean                                 debut;
     private Voiture                                 voiturePresente;
+
+    private Feux                                    feux;
 
     public PositionBloc( String nom, int num, boolean debut )
     {
@@ -20,6 +22,7 @@ public class PositionBloc
         this.listeSuivants      = new ArrayList<PositionBloc>();
         this.debut              = debut ;
         this.voiturePresente    = null ;
+        this.feux               = null ;
     }
 
     public PositionBloc()
@@ -30,14 +33,25 @@ public class PositionBloc
         this.listeSuivants      = new ArrayList<PositionBloc>();
         this.debut              = true ;
         this.voiturePresente    = null ;
+        this.feux               = null;
     }
 
     public synchronized void Prend( Voiture v )
     {
-        while ( voiturePresente != null ) {
+        // si il y a une voiture déjà présente sur ce block, ou bien si on rencontre un feux rouge, alors attente.
+        while ( (voiturePresente != null) || ( this.feux != null && this.feux.getCurrentState().equals( "rouge" )) )
+        {
             try
             {
-                System.out.println( v.getNom()+" en attente." );
+                if( voiturePresente != null )
+                {
+                    System.out.println( v.getNom() + " en attente, voiture présente devant." );
+                }
+                else if( this.feux != null && this.feux.getCurrentState().equals( "rouge" ) )
+                {
+                    System.out.println( v.getNom() + " en attente, feux rouge rencontré." );
+                }
+
                 wait();
             }
             catch ( InterruptedException e )
@@ -52,6 +66,11 @@ public class PositionBloc
     public synchronized void Libere()
     {
         voiturePresente = null;
+        notifyAll();
+    }
+
+    public synchronized void notifyChangementFeux()
+    {
         notifyAll();
     }
 
@@ -94,5 +113,11 @@ public class PositionBloc
         return new String( num+" "+nom + " " );
     }
 
+    public void setFeux( Feux feux )
+    {
+        // si pas de feux, on le créer.
+        this.feux = feux;
+        this.feux.setPositionBloc( this );
+    }
 
 }
